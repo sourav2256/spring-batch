@@ -5,7 +5,7 @@ import org.springframework.batch.item.file.FlatFileParseException;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.FileWriter;
 
 @Component
 public class SkipListener {
@@ -17,7 +17,7 @@ public class SkipListener {
     }
 
     public void createFile(String filePath, String data) {
-        try (PrintWriter fileWriter = new PrintWriter(new File(filePath), String.valueOf(true))) {
+        try (FileWriter fileWriter = new FileWriter(new File(filePath), true)) {
             fileWriter.write(data + "\n");
         } catch (Exception e) {
 
