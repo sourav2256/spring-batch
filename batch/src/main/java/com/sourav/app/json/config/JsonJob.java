@@ -9,6 +9,8 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.core.step.skip.AlwaysSkipItemSkipPolicy;
+import org.springframework.batch.item.file.FlatFileParseException;
 import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,8 +41,18 @@ public class JsonJob {
                 .<Student, Student>chunk(3, transactionManager)
                 .reader(jsonReader)
                 .writer(jsonWriter.jsonFileItemWriter())
+                .faultTolerant()
+                .skip(Throwable.class)
+//                .skip(FlatFileParseException.class)
+//                .skip(NullPointerException.class)
+                .skipLimit(2)
+                //.skipPolicy(new AlwaysSkipItemSkipPolicy())
                 .build();
+
+//        try{
+//
+//        }catch (FlatFileParseException ex){
+//
+//        }
     }
-
-
 }
