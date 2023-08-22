@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class StudentService {
-    List<StudentResponse> list;
+    List<StudentResponse> list = null;
     public List<StudentResponse> fetchStudents() {
         RestTemplate restTemplate = new RestTemplate();
         StudentResponse[] studentResponses = restTemplate.getForObject(
@@ -20,6 +20,7 @@ public class StudentService {
         for (StudentResponse sr: studentResponses) {
             list.add(sr);
         }
+        System.out.println(list);
         return list;
     }
 

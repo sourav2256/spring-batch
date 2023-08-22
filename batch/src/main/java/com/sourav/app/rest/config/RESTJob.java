@@ -2,7 +2,6 @@ package com.sourav.app.rest.config;
 
 import com.sourav.app.rest.model.StudentResponse;
 import com.sourav.app.rest.reader.RESTReader;
-import com.sourav.app.rest.service.StudentService;
 import com.sourav.app.rest.writer.RESTWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

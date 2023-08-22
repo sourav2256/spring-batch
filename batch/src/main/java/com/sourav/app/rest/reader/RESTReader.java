@@ -13,7 +13,7 @@ public class RESTReader {
     @Autowired
     private StudentService studentService;
 
-    public ItemReaderAdapter<StudentResponse> itemReaderAdapter() {
+    public ItemReaderAdapter<StudentResponse> itemReaderAdapter() { // need custom logic
         ItemReaderAdapter<StudentResponse> itemReaderAdapter = new ItemReaderAdapter<>();
         itemReaderAdapter.setTargetObject(studentService);
         itemReaderAdapter.setTargetMethod("getStudent");
