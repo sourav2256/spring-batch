@@ -21,6 +21,8 @@ public class JsonReader {
         File file = new File("InputFiles/students.json");
         jsonItemReader.setResource(new FileSystemResource(file));
         jsonItemReader.setJsonObjectReader (new JacksonJsonObjectReader<>(Student.class));
+        jsonItemReader.setMaxItemCount(8);
+        jsonItemReader.setCurrentItemCount(2);
         return jsonItemReader;
     }
 }
