@@ -6,8 +6,8 @@ spring:
     driverClassName: org.postgresql.Driver
   h2:
     console.enabled: true
-  batch:
+#  batch:
 #    jdbc:
 #      initialize-schema: NEVER
-    job:
-      enabled: false
+#    job:
+#      enabled: false

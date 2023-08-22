@@ -18,13 +18,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 public class CSVJob {
+
+    @Value("file:outputFiles/students.csv")
+    private WritableResource outputCSV;
+
     @Autowired
     private CSVItemReader csvItemReader;
     @Autowired
     private CSVItemWriter csvItemWriter;
-
-    @Value("file:/outputFiles/students.csv")
-    private WritableResource outputCSV;
 
     @Bean
     public Job firstJob(JobRepository jobRepository, @Qualifier("firstChunkStep") Step firstChunkStep) {
