@@ -1,6 +1,7 @@
 package com.sourav.app.json.config;
 
 import com.sourav.app.csv.model.Student;
+import com.sourav.app.json.processor.JsonProcessor;
 import com.sourav.app.json.writer.JsonWriter;
 import com.sourav.app.listener.SkipListener;
 import org.slf4j.Logger;
@@ -27,6 +28,8 @@ public class JsonJob {
     private JsonWriter jsonWriter;
 
     @Autowired
+    private JsonProcessor jsonProcessor;
+    @Autowired
     private SkipListener skipListener;
 
     private static Logger logger = LoggerFactory.getLogger(JsonJob.class);
@@ -44,6 +47,7 @@ public class JsonJob {
         return new StepBuilder("First Step", jobRepository)
                 .<Student, Student>chunk(3, transactionManager)
                 .reader(jsonReader)
+                .processor(jsonProcessor)
                 .writer(jsonWriter.jsonFileItemWriter())
                 .faultTolerant()
                 .skip(Throwable.class)

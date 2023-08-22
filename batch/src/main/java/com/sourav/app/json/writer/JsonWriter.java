@@ -27,6 +27,4 @@ public class JsonWriter implements ItemWriter<Student> {
                 .name("studentJsonFileItemWriter")
                 .build();
     }
-
-
 }

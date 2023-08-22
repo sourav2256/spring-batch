@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @ComponentScan(value = {"com.sourav.app.json.config",
         "com.sourav.app.json.reader",
         "com.sourav.app.json.model",
+        "com.sourav.app.json.processor",
         "com.sourav.app.rest.service",
         "com.sourav.app.listener",
         "com.sourav.app.json.writer"})

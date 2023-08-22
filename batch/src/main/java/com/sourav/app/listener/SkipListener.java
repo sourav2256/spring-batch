@@ -1,5 +1,7 @@
 package com.sourav.app.listener;
 
+import com.sourav.app.json.model.Student;
+import org.springframework.batch.core.annotation.OnSkipInProcess;
 import org.springframework.batch.core.annotation.OnSkipInRead;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.file.FlatFileParseException;
@@ -17,6 +19,11 @@ public class SkipListener {
         } if (th instanceof ParseException) {
             createFile("First Job/First Step/reader/JSONlogs.txt", th.getMessage());
         }
+    }
+
+    @OnSkipInProcess
+    public void skipInProcess (Student students, Throwable th) {
+        createFile("First Job/First Step/processor/jsonLogs.txt", students.toString());
     }
 
     public void createFile(String filePath, String data) {

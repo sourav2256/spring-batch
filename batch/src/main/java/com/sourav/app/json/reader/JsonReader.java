@@ -1,6 +1,6 @@
 package com.sourav.app.json.reader;
 
-import com.sourav.app.csv.model.Student;
+import com.sourav.app.json.model.Student;
 import org.springframework.batch.item.json.JacksonJsonObjectReader;
 import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.context.annotation.Bean;

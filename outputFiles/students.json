@@ -1,10 +1,9 @@
 [
- {"id":1,"firstName":"John","lastName":"Smith","email":"john@gmail.com"},
- {"id":2,"firstName":"Sachin","lastName":"Dave","email":"sachin@gmail.com"},
- {"id":3,"firstName":"Peter","lastName":"Mark","email":"peter@gmail.com"},
- {"id":4,"firstName":"Martin","lastName":"Smith","email":"martin@gmail.com"},
- {"id":5,"firstName":"Raj","lastName":"Patel","email":"raj@gmail.com"},
- {"id":6,"firstName":"Virat","lastName":"Yadav","email":"virat@gmail.com"},
- {"id":7,"firstName":"Prabhas","lastName":"Shirke","email":"prabhas@gmail.com"},
- {"id":8,"firstName":"Tina","lastName":"Kapoor","email":"tina@gmail.com"}
+ {"id":1,"lastName":"Smith","email":"john@gmail.com","firstName":"John"},
+ {"id":2,"lastName":"Dave","email":"sachin@gmail.com","firstName":"Sachin"},
+ {"id":3,"lastName":"Mark","email":"peter@gmail.com","firstName":"Peter"},
+ {"id":5,"lastName":"Patel","email":"raj@gmail.com","firstName":"Raj"},
+ {"id":6,"lastName":"Yadav","email":"virat@gmail.com","firstName":"Virat"},
+ {"id":7,"lastName":"Shirke","email":"prabhas@gmail.com","firstName":"Prabhas"},
+ {"id":8,"lastName":"Kapoor","email":"tina@gmail.com","firstName":"Tina"}
 ]
