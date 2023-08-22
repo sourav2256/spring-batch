@@ -6,10 +6,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-@ComponentScan(value = {"com.sourav.csv.config",
-        "com.sourav.csv.reader",
-        "com.sourav.csv.model",
-        "com.sourav.csv.writer"})
+@ComponentScan(value = {"com.sourav.json.config",
+        "com.sourav.json.reader",
+        "com.sourav.json.model",
+        "com.sourav.json.writer"})
 @EnableAsync
 public class SpringBatchApplication {
 

@@ -1,22 +1,28 @@
 package com.sourav.csv.reader;
 
 import com.sourav.csv.model.Student;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.mapping.RecordFieldSetMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 
 @Component
+//@StepScope
 public class CSVItemReader {
 
-    public FlatFileItemReader<Student> flatFileItemReader() {
+    public FlatFileItemReader<Student> flatFileItemReader(
+            //@Value("#{jobParameters ['inputFile']}") FileSystemResource file
+    ) {
         FlatFileItemReader<Student> flatFileItemReader = new FlatFileItemReader<Student>();
-        flatFileItemReader.setResource(new FileSystemResource(new File("InputFiles/students.csv")));
+        File file = new File("InputFiles/students.csv");
+        flatFileItemReader.setResource(new FileSystemResource(file));
         DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
         String[] tokens = {"ID", "First Name", "Last Name", "Email"};
         tokenizer.setNames(tokens);
@@ -32,6 +38,7 @@ public class CSVItemReader {
 
         flatFileItemReader.setLinesToSkip(1);
         return flatFileItemReader;
+//  compact way
 
 //        flatFileItemReader.setLineMapper(new DefaultLineMapper<Student>() {
 //            {
