@@ -1,4 +1,4 @@
-package com.sourav.app.batch;
+package com.sourav.app.batchMain;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

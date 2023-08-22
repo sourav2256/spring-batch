@@ -1,4 +1,4 @@
-package com.sourav.app.batch;
+package com.sourav.app.batchMain;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
         "com.sourav.app.json.reader",
         "com.sourav.app.json.model",
         "com.sourav.app.rest.service",
+        "com.sourav.app.listener",
         "com.sourav.app.json.writer"})
 @EnableAsync
 public class SpringBatchApplication {

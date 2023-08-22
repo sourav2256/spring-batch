@@ -2,6 +2,7 @@ package com.sourav.app.json.config;
 
 import com.sourav.app.csv.model.Student;
 import com.sourav.app.json.writer.JsonWriter;
+import com.sourav.app.listener.SkipListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -25,6 +26,9 @@ public class JsonJob {
     @Autowired
     private JsonWriter jsonWriter;
 
+    @Autowired
+    private SkipListener skipListener;
+
     private static Logger logger = LoggerFactory.getLogger(JsonJob.class);
     @Bean
     public Job firstJob(JobRepository jobRepository, @Qualifier("firstChunkStep") Step firstChunkStep) {
@@ -47,6 +51,7 @@ public class JsonJob {
 //                .skip(NullPointerException.class)
                 .skipLimit(2)
                 //.skipPolicy(new AlwaysSkipItemSkipPolicy())
+                .listener(skipListener)
                 .build();
 
 //        try{
