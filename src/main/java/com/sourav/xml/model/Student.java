@@ -1,5 +1,10 @@
-package com.sourav.jdbc.model;
+package com.sourav.xml.model;
 
+
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "student")
 public class Student {
     private Long id;
 
@@ -21,6 +26,7 @@ public class Student {
         return id;
     }
 
+    @XmlElement(name = "firstName")
     public String getFirstName() {
         return firstName;
     }
