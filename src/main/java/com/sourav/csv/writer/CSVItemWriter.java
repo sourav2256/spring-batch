@@ -9,9 +9,7 @@ import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
 import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.WritableResource;
 import org.springframework.stereotype.Component;
 
@@ -61,7 +59,7 @@ public class CSVItemWriter implements ItemWriter<Student> {
         return flatFileItemWriter();
     }
 
-    public FlatFileItemWriter<Student> itemWriter(WritableResource outputResource) throws Exception {
+    public FlatFileItemWriter<Student> itemWriter(WritableResource outputResource) {
         BeanWrapperFieldExtractor<Student> fieldExtractor = new BeanWrapperFieldExtractor<>();
         fieldExtractor.setNames(new String[] {"id", "firstName", "lastName", "email"});
         fieldExtractor.afterPropertiesSet();

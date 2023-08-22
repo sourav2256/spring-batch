@@ -23,8 +23,9 @@ public class CSVJob {
     @Autowired
     private CSVItemWriter csvItemWriter;
 
-    @Value("file:outputFiles/students.csv")
-    private WritableResource outputXml;
+    @Value("file:/outputFiles/students.csv")
+    private WritableResource outputCSV;
+
     @Bean
     public Job firstJob(JobRepository jobRepository, @Qualifier("firstChunkStep") Step firstChunkStep) {
         return new JobBuilder("First Job", jobRepository)
@@ -38,7 +39,7 @@ public class CSVJob {
                 .<Student, Student>chunk(3, transactionManager)
                 .reader(csvItemReader.flatFileItemReader())
                 //.writer(csvItemWriter)
-                .writer(csvItemWriter.itemWriter(outputXml))
+                .writer(csvItemWriter.itemWriter(outputCSV))
                 .build();
     }
 }
