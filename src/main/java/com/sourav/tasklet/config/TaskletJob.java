@@ -1,9 +1,9 @@
-package com.sourav.config;
+package com.sourav.tasklet.config;
 
-import com.sourav.listener.FirstJobListener;
-import com.sourav.listener.FirstStepListener;
-import com.sourav.service.FirstTasklet;
-import com.sourav.service.SecondTasklet;
+import com.sourav.tasklet.listener.FirstJobListener;
+import com.sourav.tasklet.listener.FirstStepListener;
+import com.sourav.tasklet.service.FirstTasklet;
+import com.sourav.tasklet.service.SecondTasklet;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-public class SimpleJob {
+public class TaskletJob {
 
     @Autowired
     private FirstTasklet firstTask;
@@ -51,16 +51,16 @@ public class SimpleJob {
                 .build();
     }
 
-//    @Bean
-//    public Tasklet firstTask() {
-//        return new Tasklet() {
-//            @Override
-//            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-//                System.out.println("This is the first Tasklet step");
-//                return RepeatStatus.FINISHED;
-//            }
-//        };
-//    }
+    //@Bean
+    public Tasklet firstTask() {
+        return new Tasklet() {
+            @Override
+            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+                System.out.println("This is the first Tasklet step");
+                return RepeatStatus.FINISHED;
+            }
+        };
+    }
 
     @Bean
     public Step secondStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
@@ -69,15 +69,15 @@ public class SimpleJob {
                 .build();
     }
 
-//    @Bean
-//    public Tasklet secondTask() {
-//        return new Tasklet() {
-//
-//            @Override
-//            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-//                System.out.println("This is the Second Tasklet step");
-//                return RepeatStatus.FINISHED;
-//            }
-//        };
-//    }
+    //@Bean
+    public Tasklet secondTask() {
+        return new Tasklet() {
+
+            @Override
+            public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+                System.out.println("This is the Second Tasklet step");
+                return RepeatStatus.FINISHED;
+            }
+        };
+    }
 }
