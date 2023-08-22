@@ -1,6 +1,7 @@
 package com.sourav.app.csv.writer;
 
 import com.sourav.app.csv.model.Student;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileFooterCallback;
@@ -9,6 +10,7 @@ import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
 import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.WritableResource;
 import org.springframework.stereotype.Component;
@@ -23,11 +25,10 @@ import java.util.Date;
 public class CSVItemWriter implements ItemWriter<Student> {
 
     @Override
-    public void write(Chunk<? extends Student> chunk) throws Exception {
+    public void write(Chunk<? extends Student> chunk) {
         System.out.println("Inside Item Writer");
         chunk.getItems().stream().forEach(System.out::println);
     }
-
 
     public FlatFileItemWriter<Student> flatFileItemWriter(
             //@Value("#{jobParameters ['outputFile']}") FileSystemResource file
@@ -74,6 +75,4 @@ public class CSVItemWriter implements ItemWriter<Student> {
                 .lineAggregator(lineAggregator)
                 .build();
     }
-
-
 }

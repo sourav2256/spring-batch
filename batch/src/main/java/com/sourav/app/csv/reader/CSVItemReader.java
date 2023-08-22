@@ -34,6 +34,7 @@ public class CSVItemReader {
         flatFileItemReader.setLineMapper(lineMapper);
 
         flatFileItemReader.setLinesToSkip(1);
+        System.out.println("Reading CSV....");
         return flatFileItemReader;
 //  compact way
 

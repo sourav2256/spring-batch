@@ -20,7 +20,6 @@ public class StudentService {
         for (StudentResponse sr: studentResponses) {
             list.add(sr);
         }
-        System.out.println(list);
         return list;
     }
 

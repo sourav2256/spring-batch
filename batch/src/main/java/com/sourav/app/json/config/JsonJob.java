@@ -38,7 +38,7 @@ public class JsonJob {
         return new StepBuilder("First Step", jobRepository)
                 .<Student, Student>chunk(3, transactionManager)
                 .reader(jsonReader)
-                .writer(jsonWriter)
+                .writer(jsonWriter.jsonFileItemWriter())
                 .build();
     }
 
