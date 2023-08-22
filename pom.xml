@@ -11,8 +11,13 @@
     <groupId>com.sourav</groupId>
     <artifactId>spring-batch</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>spring-batch</name>
     <description>spring-batch</description>
+    <modules>
+        <module>spring-rest</module>
+        <module>batch</module>
+    </modules>
     <properties>
         <java.version>20</java.version>
     </properties>
@@ -33,7 +38,6 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version></version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
