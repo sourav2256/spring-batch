@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring_batch
+    username: sa
+    password:
+    driverClassName: org.postgresql.Driver
+
+  universitydatasource:
+    url: jdbc:postgresql://localhost:5432/spring_batch
+    username: sa
+    password:
+    driverClassName: org.postgresql.Driver
+
+  h2:
+    console.enabled: true
+  batch:
+    jdbc:
+      initialize-schema: ALWAYS
+#    job:
+#      enabled: false

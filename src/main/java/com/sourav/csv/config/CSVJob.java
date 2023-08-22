@@ -10,8 +10,10 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.WritableResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
@@ -20,6 +22,9 @@ public class CSVJob {
     private CSVItemReader csvItemReader;
     @Autowired
     private CSVItemWriter csvItemWriter;
+
+    @Value("file:outputFiles/students.csv")
+    private WritableResource outputXml;
     @Bean
     public Job firstJob(JobRepository jobRepository, @Qualifier("firstChunkStep") Step firstChunkStep) {
         return new JobBuilder("First Job", jobRepository)
@@ -28,13 +33,12 @@ public class CSVJob {
     }
 
     @Bean
-    public Step firstChunkStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+    public Step firstChunkStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) throws Exception {
         return new StepBuilder("First Step", jobRepository)
                 .<Student, Student>chunk(3, transactionManager)
                 .reader(csvItemReader.flatFileItemReader())
-                .writer(csvItemWriter)
+                //.writer(csvItemWriter)
+                .writer(csvItemWriter.itemWriter(outputXml))
                 .build();
     }
-
-
 }

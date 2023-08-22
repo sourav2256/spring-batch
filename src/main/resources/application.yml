@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
+    url: jdbc:postgresql://localhost:5432/spring_batch
+    username:
     password:
-    driverClassName: org.h2.Driver
+    driverClassName: org.postgresql.Driver
   h2:
     console.enabled: true
   batch:
-    jdbc:
-      initialize-schema: ALWAYS
-#    job:
-#      enabled: false
+#    jdbc:
+#      initialize-schema: NEVER
+    job:
+      enabled: false
