@@ -39,6 +39,13 @@ public class ChunkJob {
     }
 
     @Bean
+    public Job secondJob(JobRepository jobRepository, @Qualifier("secondChunkStep") Step secondChunkStep) {
+        return new JobBuilder("Second Job", jobRepository)
+                .start(secondChunkStep)
+                .build();
+    }
+
+    @Bean
     public Step firstChunkStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new StepBuilder("First Step", jobRepository)
                 .<Integer, Long>chunk(3, transactionManager)
@@ -47,5 +54,13 @@ public class ChunkJob {
                 .writer(firstItemWriter)
                 .build();
     }
-
+    @Bean
+    public Step secondChunkStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+        return new StepBuilder("First Step", jobRepository)
+                .<Integer, Long>chunk(3, transactionManager)
+                .reader(firstItemReader)
+                .processor(firstItemProcessor)
+                .writer(firstItemWriter)
+                .build();
+    }
 }
