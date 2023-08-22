@@ -3,7 +3,7 @@ package com.sourav.app.json.config;
 import com.sourav.app.csv.model.Student;
 import com.sourav.app.json.processor.JsonProcessor;
 import com.sourav.app.json.writer.JsonWriter;
-import com.sourav.app.listener.SkipListener;
+import com.sourav.app.listener.CustomSkipListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -30,7 +30,7 @@ public class JsonJob {
     @Autowired
     private JsonProcessor jsonProcessor;
     @Autowired
-    private SkipListener skipListener;
+    private CustomSkipListener skipListener;
 
     private static Logger logger = LoggerFactory.getLogger(JsonJob.class);
     @Bean
@@ -54,8 +54,10 @@ public class JsonJob {
 //                .skip(FlatFileParseException.class)
 //                .skip(NullPointerException.class)
                 .skipLimit(2)
-                //.skipPolicy(new AlwaysSkipItemSkipPolicy())
+                //.skipPolicy(new AlwaysSkipItemSkipPolicy()) // Do not use max skip limit and retry together otherwise it will be infinite loop
                 .listener(skipListener)
+                .retryLimit(1)
+                .retry(Throwable.class)
                 .build();
 
 //        try{
